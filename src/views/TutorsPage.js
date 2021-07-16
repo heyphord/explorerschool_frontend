@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Tutors(){
+export default function TutorsPage(){
 
     return(
         <h1>GET ALL TUTORS</h1>
