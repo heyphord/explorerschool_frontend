@@ -22,7 +22,7 @@ export default function HomePage() {
                                 <CardTitle tag="h5">View Tutors</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted">View all tutors</CardSubtitle>
                                 <CardText>Click the button below to see all available tutors.</CardText>
-                                <Button href="/website/tutots" >View Tutors</Button>
+                                <a className="btn btn-primary" href="/website/tutors" >View Tutors</a >
                             </CardBody>
                         </Card>
                     </Col>
@@ -33,7 +33,7 @@ export default function HomePage() {
                                 <CardTitle tag="h5">View Students</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted">View all Students</CardSubtitle>
                                 <CardText>Click the button below to see all students.</CardText>
-                                <Button href="/website/tutots" >View Students</Button>
+                                <a className="btn btn-primary" href="/website/students" >View Students</a>
                             </CardBody>
                         </Card>
                     </Col>
@@ -47,7 +47,7 @@ export default function HomePage() {
                                 <CardTitle tag="h5">Add New Tutor</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted">New tutor</CardSubtitle>
                                 <CardText>Click the button below to add a new tutor.</CardText>
-                                <Button href="/website/tutots" >Add new tutor</Button>
+                                <a className="btn btn-primary" href="/website/add-tutor" >Add new tutor</a>
                             </CardBody>
                         </Card>
                     </Col>
@@ -58,7 +58,7 @@ export default function HomePage() {
                                 <CardTitle tag="h5">Add New Student </CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted">New student</CardSubtitle>
                                 <CardText>Click the button below to add a new student.</CardText>
-                                <Button href="/website/tutots" >Add new student</Button>
+                                <a className="btn btn-primary" href="/website/add-student" >Add new student</a>
                             </CardBody>
                         </Card>
                     </Col>
