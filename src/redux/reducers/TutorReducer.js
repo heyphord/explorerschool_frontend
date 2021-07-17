@@ -121,7 +121,7 @@ export const counterSlice = createSlice({
     deleteTutorSuccess: (state, action) => {
       state.ACTION_TYPE = deleteTutorSuccess.toString();
       state.isDeleteTutorLoading = false;
-      state.deleteTutorMessage = "";
+      state.deleteTutorMessage = action.payload.message;
 
 
     },
@@ -169,7 +169,7 @@ export const
     createTutorStart, createTutorSuccess, createTutorError,
     updateTutorStart, updateTutorSuccess, updateTutorError,
     deleteTutorStart, deleteTutorSuccess, deleteTutorError,
-    deleteTutorStart, deleteTutorSuccess, deleteTutorError,
+    assignStudentToTutorStart, assignStudentToTutorSuccess, assignStudentToTutorError,
    
     resetActionType
   } = counterSlice.actions
