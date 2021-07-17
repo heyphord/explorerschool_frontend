@@ -1,13 +1,9 @@
 import { combineReducers } from 'redux';
-import AuthenticateReducer from "../reducers/AuthenticateReducer";
-import TeamReducer from "../reducers/TeamReducer";
+import TutorReducer from "./TutorReducer";
 
 export default combineReducers(
     {
-      authenticate: AuthenticateReducer,
-      team: TeamReducer,
-      
-    //   navigation: NavigationReducer,
+      tutor: TutorReducer,
       
     }
   );
