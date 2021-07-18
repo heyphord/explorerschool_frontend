@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 
 //redux
 import { useSelector , useDispatch } from "react-redux";
-// import { getStudentsMiddleware } from "../redux/middleware/StudentMiddleware";
+import { getStudentsMiddleware } from "../redux/middleware/StudentMiddleware";
 
 export default function StudentsPage() {
 
@@ -12,7 +12,7 @@ export default function StudentsPage() {
 
     React.useEffect(() => {
 
-        // dispatch( getStudentsMiddleware());
+        dispatch( getStudentsMiddleware());
 
     }, [])
     return (
@@ -23,22 +23,19 @@ export default function StudentsPage() {
                     <tr>
                         <th>Staff Id</th>
                         <th>Full Name</th>
-                        <th>Staff Email</th>
-                        <th>Action</th>
+                        <th>Student Email</th>
+                        <th>Department</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* { studentState.students.map( (student, index)=>
+                    { studentState.students.map( (student, index)=>
                         <tr>
-                            <th scope="row"><a href={"/website/student/"+student.id}>{student.id}</a> </th>
-                            <td> <a href={"/website/student/"+student.id}>{student.first_name} {student.last_name}</a> </td>
+                            <th scope="row">{student.id} </th>
+                            <td> {student.first_name+" "+student.last_name}</td>
                             <td>{student.email}</td>
-                            <td>
-                                <a className="btn btn-primary" href="/website/edit-student/" >Edit</a >
-                                <a className="btn btn-danger" href="/website/students" >Delete</a >
-                            </td>
+                            <td>{student.department}</td>
                         </tr>
-                    )} */}
+                    )}
                 </tbody>
             </Table>
         </>
