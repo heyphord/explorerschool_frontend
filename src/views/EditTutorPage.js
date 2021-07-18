@@ -1,19 +1,21 @@
 import React from "react";
-import { 
-    Button, Form, FormGroup, Label, Input, Container, Spinner } from 'reactstrap';
+import {
+    Button, Form, FormGroup, Label, Input, Container, Spinner
+} from 'reactstrap';
 import { useToasts } from 'react-toast-notifications';
 import {
     useParams
 } from "react-router-dom";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { getTutorMiddleware, updateTutorMiddleware } from "../redux/middleware/TutorMiddleware";
-import { updateTutorError, updateTutorSuccess, resetActionType, getTutorSuccess } from "../redux/reducers/TutorReducer";
+import { assignStudentToTutorMiddleware, getTutorMiddleware, updateTutorMiddleware } from "../redux/middleware/TutorMiddleware";
+import { updateTutorError, updateTutorSuccess, resetActionType, getTutorSuccess, assignStudentToTutorError, assignStudentToTutorSuccess } from "../redux/reducers/TutorReducer";
 
 export default function EditTutorPage(props) {
 
     //redux
     const tutorState = useSelector(state => state.tutor);
+    const studentState = useSelector(state => state.student);
     const dispatch = useDispatch();
 
     let { id } = useParams();
@@ -24,6 +26,10 @@ export default function EditTutorPage(props) {
     const [firstName, setFirstName] = React.useState(tutorState.tutor.first_name);
     const [lastName, setLastName] = React.useState(tutorState.tutor.last_name);
     const [email, setEmail] = React.useState(tutorState.tutor.email);
+    
+    const [selectedStudent, setSelectedStudent] = React.useState();
+
+
 
 
     const onSubmit = () => {
@@ -39,7 +45,18 @@ export default function EditTutorPage(props) {
             return;
         }
 
-        dispatch(updateTutorMiddleware(id, firstName, lastName ,email))
+        dispatch(updateTutorMiddleware(id, firstName, lastName, email))
+    }
+
+    const onAssignToTutor = () => {
+        if (selectedStudent==-1) {
+
+            addToast("Please select a student from the dropdown", { appearance: 'error' });
+            return;
+
+        } 
+
+        dispatch(assignStudentToTutorMiddleware(id, selectedStudent));
     }
 
     React.useEffect(() => {
@@ -55,6 +72,12 @@ export default function EditTutorPage(props) {
             setFirstName(tutorState.tutor.first_name);
             setLastName(tutorState.tutor.last_name);
             setEmail(tutorState.tutor.email);
+        }else if (tutorState.ACTION_TYPE === assignStudentToTutorSuccess.toString()) {
+            addToast("Student assigned to this tutor", { appearance: 'success' })
+
+        }else if (tutorState.ACTION_TYPE === assignStudentToTutorError.toString()) {
+            addToast("Error assigning student to to this tutor", { appearance: 'error' })
+
         }
         dispatch(resetActionType())
 
@@ -64,6 +87,21 @@ export default function EditTutorPage(props) {
     React.useEffect(() => {
         dispatch(getTutorMiddleware(id));
     }, []);
+
+    const renderOptions = () => {
+
+        return (
+            <Input onChange={(e) => { setSelectedStudent(e.target.value); }} type="select" name="select" id="exampleSelect">
+                <option value={-1}>--Select--</option>
+
+                {studentState.students.map((student, index) =>
+                    <option value={student.id}>{student.first_name + " " + student.last_name}</option>
+
+                )}
+
+            </Input>)
+
+    }
 
     return (
         <>
@@ -91,9 +129,22 @@ export default function EditTutorPage(props) {
                         }
                     </Button>
                 </Form>
+                <hr className="m-5" />
+                <Form>
+                    <FormGroup>
+                        <Label for="exampleSelect">Select student from the drop down and assing to tutor</Label>
+                        {renderOptions()}
+                        <Button onClick={onAssignToTutor}>
+                            {tutorState.isAssignStudentToTutorLoading ?
+                                <Spinner children="" /> :
+                                "Assign this student to tutor"
+                            }
+                        </Button>
+                    </FormGroup>
+                </Form>
             </Container>
 
-            
+
         </>
     )
 }
