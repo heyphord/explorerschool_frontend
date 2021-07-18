@@ -44,6 +44,37 @@ export const getStudentsMiddleware = ( ) => {
 }
 
 
+export const getStudentMiddleware = ( id) => {
+    return function (dispatch) {
+
+        dispatch(getStudentStart());
+
+        return axios.get(
+            `${STUDENT_URL}${id}`,
+
+        ).then(function (response) {
+
+
+            dispatch(getStudentSuccess(response.data));
+
+
+        }).catch(function (error) {
+
+
+            if (error.response) {
+
+                dispatch(getStudentError({ message: error.response.data.message }));
+                return;
+            }
+            dispatch(getStudentError({ message: error.message }));
+
+
+        });
+    };
+
+}
+
+
 export const createStudentMiddleware = (first_name , last_name ,email ,department) => {
     return function (dispatch) {
 

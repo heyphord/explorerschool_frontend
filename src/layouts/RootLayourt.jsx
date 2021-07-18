@@ -28,7 +28,7 @@ export default function RootLayout() {
                 <Route path="/website/add-tutor" component={AddTutorPage} />
                 <Route path="/website/edit-tutor/:id" component={EditTutorPage} />
                 <Route path="/website/add-student" component={AddStudentPage} />
-                <Route path="/website/edit-student" component={EditStudentPage} />
+                <Route path="/website/edit-student/:id" component={EditStudentPage} />
 
                 <Redirect to="/website/home" />
             </Switch>
