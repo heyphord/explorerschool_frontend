@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost:8000";
+const SERVER_URL = "http://127.0.0.1:8000";
 
 //tutors
 export const TUTORS_URL = SERVER_URL +'/tutors';
