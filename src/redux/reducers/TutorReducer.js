@@ -55,7 +55,7 @@ export const counterSlice = createSlice({
       state.ACTION_TYPE = getTutorStart.toString();
       state.isGetTutorLoading = true;
       state.getTutorMessage = "";
-      state.tutors={};
+      state.tutor={};
   },
 
   getTutorSuccess: (state, action) => {
