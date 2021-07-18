@@ -77,7 +77,7 @@ export const getTutorMiddleware = ( id) => {
 }
 
 
-export const createTutorMiddleware = (first_name , last_name) => {
+export const createTutorMiddleware = (first_name , last_name ,email) => {
     return function (dispatch) {
 
         dispatch(createTutorStart());
@@ -85,7 +85,7 @@ export const createTutorMiddleware = (first_name , last_name) => {
         return axios.post(
             TUTORS_URL,
 
-            {first_name , last_name},
+            {first_name , last_name , email},
 
 
         ).then(function (response) {
@@ -105,7 +105,7 @@ export const createTutorMiddleware = (first_name , last_name) => {
 
 }
 
-export const updateTutorMiddleware = (id ,first_name , last_name) => {
+export const updateTutorMiddleware = (id ,first_name , last_name ,email) => {
     return function (dispatch) {
 
         dispatch(updateTutorStart());
@@ -114,7 +114,7 @@ export const updateTutorMiddleware = (id ,first_name , last_name) => {
             `${TUTOR_URL}${id}`,
 
 
-            {first_name , last_name},
+            {first_name , last_name ,email},
 
 
         ).then(function (response) {

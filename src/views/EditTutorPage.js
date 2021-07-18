@@ -39,7 +39,7 @@ export default function EditTutorPage(props) {
             return;
         }
 
-        dispatch(updateTutorMiddleware(id, firstName, lastName))
+        dispatch(updateTutorMiddleware(id, firstName, lastName ,email))
     }
 
     React.useEffect(() => {
@@ -54,7 +54,7 @@ export default function EditTutorPage(props) {
         } else if (tutorState.ACTION_TYPE === getTutorSuccess.toString()) {
             setFirstName(tutorState.tutor.first_name);
             setLastName(tutorState.tutor.last_name);
-            setEmail(tutorState.tutor.enail);
+            setEmail(tutorState.tutor.email);
         }
         dispatch(resetActionType())
 

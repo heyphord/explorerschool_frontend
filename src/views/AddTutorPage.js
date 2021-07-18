@@ -33,7 +33,7 @@ export default function AddTutorPage() {
             return;
           }
 
-          dispatch( createTutorMiddleware( firstName,lastName))
+          dispatch( createTutorMiddleware( firstName,lastName, email))
     }
 
     React.useEffect(() => {
