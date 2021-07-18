@@ -1,17 +1,34 @@
 import React from "react";
-import { Table,Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Table,Button, Modal, ModalHeader, ModalBody, ModalFooter, Spinner } from 'reactstrap';
 
 //redux
 import { useSelector , useDispatch } from "react-redux";
 import { deleteTutorMiddleware, getTutorsMiddleware } from "../redux/middleware/TutorMiddleware";
+import { deleteTutorSuccess } from "../redux/reducers/TutorReducer";
+
+import { useToasts } from 'react-toast-notifications';
 
 export default function TutorsPage() {
+
+    //toast
+    const { addToast } = useToasts();
 
     const tutorState = useSelector( state=> state.tutor);
     const dispatch = useDispatch();
     const [deleteModal, showDeleteModal] = React.useState(false);
 
     const [selectedTutor, setSelectedTutor] = React.useState();
+
+    React.useEffect(() => {
+        if (tutorState.ACTION_TYPE === deleteTutorSuccess.toString()) {
+
+            addToast("Tutor deleted successfully", { appearance: 'success' });
+            dispatch( getTutorsMiddleware());
+            showDeleteModal(false)
+
+        }
+
+    }, [tutorState.ACTION_TYPE])
 
     React.useEffect(() => {
 
@@ -55,10 +72,10 @@ export default function TutorsPage() {
             <Modal isOpen={deleteModal}  >
                 <ModalHeader >Delete this tutor?</ModalHeader>
                 <ModalBody>
-                    Are you sure you want to delete {selectedTutor ?selectedTutor.first_name:null} from the database?
+                    Are you sure you want to delete {selectedTutor ?selectedTutor.first_name+" "+ selectedTutor.last_name :null} from the database?
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="danger" onClick={()=>showDeleteModal(state=> !state)}>Yes, Delete</Button>{' '}
+                    <Button color="danger" onClick={ deleteUser}>{tutorState.isDeleteTutorLoading? <Spinner children=""/> : "Yes, Delete"}</Button>{' '}
                     <Button color="secondary" onClick={()=>showDeleteModal(state=> !state)}>Cancel</Button>
                 </ModalFooter>
             </Modal>

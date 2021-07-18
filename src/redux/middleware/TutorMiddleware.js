@@ -141,7 +141,7 @@ export const deleteTutorMiddleware = (id ) => {
         dispatch(deleteTutorStart());
 
         return axios.delete(
-            `${TUTOR_URL}/${id}`
+            `${TUTOR_URL}${id}`
 
         ).then(function (response) {
 
