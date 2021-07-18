@@ -52,7 +52,7 @@ export const getTutorMiddleware = ( id) => {
         dispatch(getTutorStart());
 
         return axios.get(
-            `${TUTOR_URL}/${id}`,
+            `${TUTOR_URL}${id}`,
 
         ).then(function (response) {
 
@@ -111,7 +111,7 @@ export const updateTutorMiddleware = (id ,first_name , last_name) => {
         dispatch(updateTutorStart());
 
         return axios.put(
-            `${TUTOR_URL}/${id}`,
+            `${TUTOR_URL}${id}`,
 
 
             {first_name , last_name},

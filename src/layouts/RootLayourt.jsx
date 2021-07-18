@@ -26,7 +26,7 @@ export default function RootLayout() {
                 <Route path="/website/students" component={StudentsPage} />
                 <Route path="/website/tutor/:id" component={TutorDetailsPage} />
                 <Route path="/website/add-tutor" component={AddTutorPage} />
-                <Route path="/website/edit-tutor" component={EditTutorPage} />
+                <Route path="/website/edit-tutor/:id" component={EditTutorPage} />
                 <Route path="/website/add-student" component={AddStudentPage} />
                 <Route path="/website/edit-student" component={EditStudentPage} />
 

@@ -3,6 +3,8 @@ import './App.css';
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import RootLayout from './layouts/RootLayourt';
+import { ToastProvider } from "react-toast-notifications";
+
 
 
 // Redux imports
@@ -17,7 +19,13 @@ function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router history={hist} >
-          <RootLayout />
+          <ToastProvider
+            placement="top-center"
+            autoDismiss
+            autoDismissTimeout={3000}
+          >
+            <RootLayout />
+          </ToastProvider>
         </Router>
       </PersistGate>
     </Provider>

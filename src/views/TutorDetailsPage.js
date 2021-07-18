@@ -21,7 +21,7 @@ export default function TutorDetailsPage() {
     return (
         <>
             <h1>TUTOR DETAILS</h1>
-            <h3>Student id: {tutorState.tutor.id}</h3>
+            <h3>Tutor id: {tutorState.tutor.id}</h3>
             <h3>First name: {tutorState.tutor.first_name}</h3>
             <h3>Last name: {tutorState.tutor.last_name}</h3>
             <h3>Email: {tutorState.tutor.email}</h3>
